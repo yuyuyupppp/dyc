@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/dhzl.css">
+</head>
+<body>
+    <div id="zong">
+        <script src="./cedao.js"></script>
+        <div id="dd">
+            <form>
+                <table>
+                    <tr>
+                        <td>category</td>
+                        <td><input type="text" name="category"></td>
+                    </tr>
+                    <tr>
+                        <td>sort</td>
+                        <td><input type="text" name="sort"></td>
+                    </tr>
+                    <tr>
+                        <td><span name="sp"></span></td>
+                        <td>
+                            <input type="button" name="xiugai" value="修改">
+                            <input type="reset" value="重添">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <script>
+        (function(){
+        var body=document.body;
+        // body.onload=function(){
+        var form=document.forms[0];
+        $xiugai=form.elements["xiugai"];
+        $category=form.category;
+        $sort=form.sort;
+        console.log($category,$sort);
+        var paramsstr=new URLSearchParams(location.search);
+        var $id=paramsstr.get("id");
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var r=xhr.responseText;
+                if(r==0){
+                    alert('没有查询结果');
+                }else{
+                    var mm=JSON.parse(r);
+                    $category.value=mm[0].category;
+                    $sort.value=mm[0].sort;
+                }
+                
+            }
+        }
+        xhr.open('get','/dh/search/'+$id,true);
+        xhr.send();
+            // }
+       $xiugai.onclick=function(){
+
+          var paramsstr=new URLSearchParams(location.search);
+          var id=paramsstr.get("id");
+          var category=$category.value;
+          var sort=$sort.value;
+          var xhr=new XMLHttpRequest();
+          xhr.onreadystatechange=function(){
+              if(xhr.readyState==4 && xhr.status==200){
+                  var r=xhr.responseText;
+                  if(r==1){
+                      alert("修改成功");
+                      location.href="dhzl_list.html";
+                  }else{
+                      alert('修改失败');
+                  }
+              }
+          }
+          xhr.open("put","/dh/update",true);
+          xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+          var formdata=`id=${id}&category=${category}&sort=${sort}`;
+          xhr.send(formdata);
+       }
+
+        })()
+      
+    </script>
+</body>
+</html>

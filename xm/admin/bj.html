@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/wz.css">
+    <style>
+        #bj{
+            width: 100%;
+            line-height: 30px;
+            font-style: normal;
+            font-size: 18px;
+        }
+        .span{
+            width: 100%;
+            color: #9d9d9d;
+            font-weight: bolder;
+        }
+        .mm{
+            color: burlywood;
+            font-weight:lighter ;
+            border-bottom: 1px dotted #9d9d77;
+        }
+    </style>
+</head>
+<body>
+    <script src="./daohang.js"></script>
+    <div id="bj">
+    </div>
+    <script>
+        var bj=document.getElementById("bj");
+         var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    var r=xhr.responseText;
+                    var r=JSON.parse(r);
+                    console.log(r);
+                    var htmlstr="";
+                    for(var u of r){
+                        htmlstr+=`<div class="span">${u.title}</div><div class="mm">${u.content}</div>`
+                    }
+                    bj.innerHTML=htmlstr;
+                }
+            }
+           xhr.open('get','/xxbj/listtt',true);
+           xhr.send();
+    </script>
+</body>
+</html>

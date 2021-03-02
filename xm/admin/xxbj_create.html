@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/dhzl.css">
+</head>
+<body>
+<div id="zong">
+    <script src="./cedao.js"></script>
+    <div id="dd">
+    <form>
+        <table>
+            <tr>
+                <td>title</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <td>content</td>
+                <td><input type="text" name="content"></td>
+            </tr>
+            <tr>
+                <td><span name="sp"></span></td>
+                <td>
+                    <input type="button" name="baocun" value="保存">
+                    <input type="reset" value="重添">
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</div>
+<script>
+    (function(){
+        var form=document.forms[0];
+    var $baocun=form.elements["baocun"];
+    var sp=document.getElementsByTagName("span")[0];
+    console.log(sp);
+    console.log($baocun);
+    $baocun.onclick=function(){
+        $content=form.content.value;
+        $title=form.title.value;
+        console.log($content,$title);
+       var xhr=new XMLHttpRequest();
+       xhr.onreadystatechange=function(){
+           if(xhr.readyState==4 && xhr.status==200){
+               var r=xhr.responseText;
+               if(r==1){
+                   sp.innerHTML="保存成功";
+                   location.reload();
+               }
+           }
+       }
+       xhr.open("post","/xxbj/create",true);
+       var formdata=`content=${$content}&title=${$title}`;
+       xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+       console.log(formdata);
+		xhr.send(formdata);
+    }
+    })()
+</script>
+</body>
+</html>

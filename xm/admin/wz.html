@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/wz.css">
+    <style>
+        #wz .one{
+            width: 100%;
+            height: 200px;
+        }
+        #wz .one>div:first-child{
+            width: 100%;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #d9d9d9;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        #wz .one>div:nth-child(2)>ul{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        #wz .one>div:nth-child(2)>ul>li{
+            box-sizing: border-box;
+            float: left;
+            display: block;
+            padding: 5px;
+            width: 25%;
+            text-align: center;
+            border-bottom:1px dotted #d9d9d9;
+            padding: 5px;
+            height: 30px;
+            line-height: 30px;
+        }
+        #wz a{
+            text-decoration: none;
+            color: rgb(29, 28, 27);
+            font-weight: lighter;
+        }
+    </style>
+</head>
+<body>
+    <script src="./daohang.js"></script>
+    <div id="wz">
+        
+    </div>
+    <script>
+        var wz=document.getElementById("wz");
+        var xhr=new XMLHttpRequest();
+        var strhtml=``;
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var r=xhr.responseText;
+                var arr=JSON.parse(r);
+                console.log(arr);
+
+                strhtml+=`<div class="one">
+            <div>
+                <span>${arr[0].category}</span>
+            </div><div> `;
+               for(var i of arr){ 
+                   if(i.category==arr[0].category){
+                  strhtml+=`
+                <ul><li><a href="${i.wz}">${i.title}</a></li></ul>            
+                  `;
+                   }       
+        }
+        strhtml+=`</div></div>`;
+               wz.innerHTML=strhtml;
+
+
+
+               strhtml+=`<div class="one">
+            <div>
+                <span>${arr[18].category}</span>
+            </div><div> `;
+               for(var i of arr){ 
+                   if(i.category==arr[18].category){
+                  strhtml+=`
+                <ul><li><a href="${i.wz}">${i.title}</a></li></ul>            
+                  `;
+                   }       
+        }
+        strhtml+=`</div></div>`;
+               wz.innerHTML=strhtml;
+
+
+
+               strhtml+=`<div class="one">
+            <div>
+                <span>${arr[22].category}</span>
+            </div><div> `;
+               for(var i of arr){ 
+                   if(i.category==arr[22].category){
+                  strhtml+=`
+                <ul><li><a href="${i.wz}">${i.title}</a></li></ul>            
+                  `;
+                   }       
+        }
+        strhtml+=`</div></div>`;
+               wz.innerHTML=strhtml;
+
+
+               strhtml+=`<div class="one">
+            <div>
+                <span>${arr[35].category}</span>
+            </div><div> `;
+               for(var i of arr){ 
+                   if(i.category==arr[35].category){
+                  strhtml+=`
+                <ul><li><a href="${i.wz}">${i.title}</a></li></ul>            
+                  `;
+                   }       
+        }
+        strhtml+=`</div></div>`;
+               wz.innerHTML=strhtml;
+
+
+
+
+
+               strhtml+=`<div class="one">
+            <div>
+                <span>${arr[42].category}</span>
+            </div><div> `;
+               for(var i of arr){ 
+                   if(i.category==arr[42].category){
+                  strhtml+=`
+                <ul><li><a href="${i.wz}">${i.title}</a></li></ul>            
+                  `;
+                   }       
+        }
+        strhtml+=`</div></div>`;
+               wz.innerHTML=strhtml;
+
+
+               strhtml+=`<div class="one">
+            <div>
+                <span>${arr[49].category}</span>
+            </div><div> `;
+               for(var i of arr){ 
+                   if(i.category==arr[49].category){
+                  strhtml+=`
+                <ul><li><a href="${i.wz}">${i.title}</a></li></ul>            
+                  `;
+                   }       
+        }
+        strhtml+=`</div></div>`;
+               wz.innerHTML=strhtml;
+
+
+
+
+            }
+        }
+        xhr.open("get","/dh/getwz",true);
+        xhr.send();           
+    </script>
+</body>
+</html>

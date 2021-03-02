@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/list.css">
+</head>
+<body>
+    <div id="zong">
+        <script src="./cedao.js"></script>
+        <table>
+          <thead>
+              <tr>
+                  <th>id</th>
+                  <th>网址类型</th>
+                  <th>网址名称</th>
+                  <th>网址链接</th>
+                  <th>sort</th>
+                  <th>操作</th>
+              </tr>
+          </thead>
+          <tbody>
+      
+          </tbody>
+       </table>
+    </div>
+    <script>
+        var tbody=document.getElementsByTagName("tbody")[0];
+        var body=document.body;
+                var xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                        var r=xhr.responseText;
+                        var r=JSON.parse(r);
+                        var htmlstr="";
+                        for(var nn of r){
+                            htmlstr+=`<tr>
+                                <td>${nn.id}</td>
+                                <td>${nn.category}</td>
+                                <td>${nn.title}</td>
+                                <td>${nn.wz}</td>
+                                <td>${nn.sort}</td>
+                                <td>
+                                    <a href="wz_search.html?id=${nn.id}">修改</a>
+                                    <a href="javascript:del(${nn.id})">删除</a> 
+                                </td>
+                                 </tr>`;
+                            tbody.innerHTML=htmlstr;
+                        }
+
+                    }
+                }
+                xhr.open("get","/dh/getwz",true);
+                xhr.send();
+                function del(id){
+                    var xhr=new XMLHttpRequest();
+                    xhr.onreadystatechange=function(){
+                        if(xhr.readyState==4 && xhr.status==200){
+                            var r=xhr.responseText;
+                            if(r==1){
+                                alert('删除成功');
+                                location.reload();
+                            }
+                        }
+                    }
+                    xhr.open('delete','/dh/wz_del/'+id,true);
+                    xhr.send();
+                }
+    </script>
+</body>
+</html>

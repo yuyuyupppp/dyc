@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/dhzl.css">
+    <style>
+        select{
+            width: 380px;
+            height: 27px;
+            border: 0;outline: 0;
+            padding: 3px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="zong">
+ <script src="./cedao.js"></script>
+ <div id="dd">
+    <form>
+        <table>
+            <tr>
+                <td>title</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <td>wz</td>
+                <td><input type="text" name="wz"></td>
+            </tr>
+            <tr>
+                <td>sort</td>
+                <td><input type="text" name="sort"></td>
+            </tr>
+            <tr>
+                <td>dhzl</td>
+                <td>
+                <select name="dhzl_id">
+                    <option>—请选择—</option>
+                </select>
+            </td>
+            </tr>
+            <tr>
+                <td><span name="sp"></span></td>
+                <td>
+                    <input type="button" name="baocun" value="保存">
+                    <input type="reset" value="重添">
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</div>
+<script>
+    (function(){
+        var form=document.forms[0];
+    var sel=form.elements['dhzl_id'];
+    console.log(sel);
+    var xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            var r=xhr.responseText;
+            var result=JSON.parse(r);
+            console.log(result);
+            for(var h of result){
+                var opt=document.createElement("option");
+                opt.value=h.id;
+                opt.innerHTML=h.category;
+                sel.appendChild(opt);
+            }
+        }
+    }
+    xhr.open('get','/dh/getdl',true);
+    xhr.send();
+    var bc=form.baocun;
+    bc.onclick=function(){
+    var $title=form.title.value;
+    var $sort=form.sort.value;
+    var $dhzl_id=form.dhzl_id.value;
+    var $wz=form.wz.value;
+    // console.log($title,$sort,$dhzl_id,$wz);
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var r=xhr.responseText;
+                if(r==1){
+                    alert('保存成功');
+                    location.reload();
+                }else{
+                    alert('保存失败');
+                }
+            }
+        }
+        xhr.open('post','/dh/wzcr',true);
+        var formdata=`title=${$title}&sort=${$sort}&dhzl_id=${$dhzl_id}&wz=${$wz}`;
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+         console.log(formdata);
+        xhr.send(formdata);
+    }
+    })()
+   
+</script>
+</body>
+</html>

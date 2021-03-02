@@ -1,0 +1,423 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/list.css">
+</head>
+<body>
+    <div id="zong">
+        <script src="./cedao.js"></script>
+        <table>
+          <thead>
+              <tr>
+                  <th>id</th>
+                  <th>网址类型</th>
+                  <th>网址名称</th>
+                  <th>网址链接</th>
+                  <th>sort</th>
+                  <th>操作</th>
+              </tr>
+          </thead>
+          <tbody>
+      
+          </tbody>
+       </table>
+    </div>
+    <script>
+    function ss(n){
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var m=xhr.responseText;
+                var m=JSON.parse(m);
+                if(m.length>0){
+                    console.log(m[0].category);
+                   return m[0].category;                
+                }
+            }
+        }
+        xhr.open('get','/dh/search/'+n,true);
+        xhr.send();
+    }
+        var tbody=document.getElementsByTagName("tbody")[0];
+        var body=document.body;
+                var xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                        var r=xhr.responseText;
+                        var r=JSON.parse(r);
+                        var htmlstr="";
+                        for(var nn of r){
+                            htmlstr+=`<tr>
+                                <td>${nn.id}</td>
+                                <td>${ss(nn.dhzl_id)}</td>
+                                <td>${nn.title}</td>
+                                <td>${nn.wz}</td>
+                                <td>${nn.sort}</td>
+                                <td>
+                                    <a href="dhzl_search.html?id=${nn.id}">修改</a>
+                                    <a href="javascript:del(${nn.id})">删除</a> 
+                                </td>
+                                 </tr>`;
+                            tbody.innerHTML=htmlstr;
+                        }
+
+                    }
+                }
+                xhr.open("get","/dh/getwz",true);
+                xhr.send();
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @media (min-width:576px){
+            #contain{
+            width: 100%;
+            height: 50px;
+            margin: 0 auto;
+            background: #222;
+            border-color: #080808;
+            font-size: 14px;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        #contain button{
+            display: block;
+            float: right;
+            background: transparent;
+            border: 1px solid #9d9d9d;
+            border-radius: 4px;
+            margin-right:15px ;
+            /* margin-top: 8px;
+            margin-bottom: 10px; */
+            padding: 9px 10px;
+            box-sizing: border-box;
+            box-sizing: border-box;
+            margin-top: 7px;
+        }
+        .icon-bar{
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px;
+            background: #fff;
+            margin-top: 4px;
+        }
+        #contain>ul{
+            float: left;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        ul>li{
+            list-style: none;
+            display: block;
+            float: left;
+            height: 100%;
+        }
+        a{
+            text-align: center;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: #9d9d9d;
+            display: block;
+            height: 100%;
+            padding: 18px 15px;
+        }
+        h3{
+            float: left;
+            color: #9d9d9d;
+            margin: 0;
+            height: 100%;
+            line-height: 50px;
+            margin-left: 18px;
+            margin-right: 40px;
+            padding-bottom: 1px;
+        } 
+       
+        }
+    </style>
+</head>
+<body>
+ <script>
+  
+ </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/wz.css">
+    <style>
+        #wz .one{
+            width: 100%;
+            height: 200px;
+        }
+        #wz .one>div:first-child{
+            width: 100%;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #d9d9d9;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        #wz .one>div:nth-child(2)>ul{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        #wz .one>div:nth-child(2)>ul>li{
+            box-sizing: border-box;
+            float: left;
+            display: block;
+            padding: 5px;
+            width: 25%;
+            text-align: center;
+            border-bottom:1px dotted #d9d9d9;
+            padding: 5px;
+            height: 30px;
+            line-height: 30px;
+        }
+        #wz a{
+            text-decoration: none;
+            color: rgb(29, 28, 27);
+            font-weight: lighter;
+        }
+    </style>
+</head>
+<body>
+    <script src="./daohang.js"></script>
+    <div id="wz">
+        
+    </div>
+    <script>
+        var wz=document.getElementById("wz");
+        var xhr=new XMLHttpRequest();
+        var strhtml=``;
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var r=xhr.responseText;
+                var arr=JSON.parse(r);
+                for(mm of arr){
+                    var category=mm.category;
+                
+        strhtml+=`<div class="one">
+            <div>
+                <span>${category}</span>
+            </div>
+            <div>
+                <ul>
+                    <li id="tes"><a href="" ></a></li>
+                </ul>
+            </div>
+        </div>`;
+        wz.innerHTML=strhtml;
+                }
+            }
+        }
+        xhr.open("get","/dh/getdl",true);
+        xhr.send();
+
+
+    function hq(n){
+        var tes=document.getElementById("tes");
+         console.log(tes);
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                var r=xhr.responseText;
+                var res=JSON.parse(r);
+                console.log(res);
+                for( qq of res){
+                    tes.innerHTML=qq.title;
+                }
+            }
+            
+        }
+        xhr.open("get","/dh/gets/"+n,true);
+        xhr.send();
+    }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/wz.css">
+    <style>
+        #wz .one{
+            width: 100%;
+            height: 200px;
+        }
+        #wz .one>div:first-child{
+            width: 100%;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #d9d9d9;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        #wz .one>div:nth-child(2)>ul{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        #wz .one>div:nth-child(2)>ul>li{
+            box-sizing: border-box;
+            float: left;
+            display: block;
+            padding: 5px;
+            width: 25%;
+            text-align: center;
+            border-bottom:1px dotted #d9d9d9;
+            padding: 5px;
+            height: 30px;
+            line-height: 30px;
+        }
+        #wz a{
+            text-decoration: none;
+            color: rgb(29, 28, 27);
+            font-weight: lighter;
+        }
+    </style>
+</head>
+<body>
+    <script src="./daohang.js"></script>
+    <div id="wz">
+        
+    </div>
+    <script>
+        var wz=document.getElementById("wz");
+        var xhr=new XMLHttpRequest();
+        var strhtml=``;
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var r=xhr.responseText;
+                var arr=JSON.parse(r);
+                for(let mm of arr){
+                    var category=mm.category;
+        strhtml+=`<div class="one">
+            <div>
+                <span>${category}</span>
+            </div>
+            <div class="${mm.id}">             
+            </div>
+        </div>`;
+        wz.innerHTML=strhtml;
+        ccc(mm.id);
+                }
+            }
+        }
+        xhr.open("get","/dh/getdl",true);
+        xhr.send();
+
+    function ccc(n){
+        var ll=document.getElementsByClassName(`${n}`)[0];
+        console.log(ll);
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                var r=xhr.responseText;
+                var res=JSON.parse(r);
+                var nnnn="";
+                // console.log(ll);
+                for(let ee of res){
+                    nnnn+=`<ul>
+                    <li><a href="">${ee.title}</a></li>
+                </ul>`;
+                ll.innerHTML=nnnn;
+                // var a=document.createElement("a");
+                // a.innerHTML=ee.title;
+                // var li=document.createElement("li");
+                // li.appendChild(a);
+                // var ul=document.createElement("ul");
+                // ul.appendChild(li);
+                // ll.appendChild(ul);
+                }
+               
+            }
+            
+        }
+        xhr.open("get","/dh/gets/"+n,true);
+        xhr.send();
+        }
+    </script>
+</body>
+</html>
+-----
+function ccc(n){
+    for(let e=0;e<=n;e++){        
+    var ll=document.getElementsByClassName(`${e}`)[0];
+    var xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4&&xhr.status==200){
+            var r=xhr.responseText;
+            var res=JSON.parse(r);
+            var nnnn="";
+            // console.log(ll);
+            for(let i=0;i<res.length;i++){
+                nnnn+=`<ul>
+                <li><a href="#">${res[i].title}</a></li>
+            </ul>`;
+             ll.innerHTML=nnnn;
+            //ll.appendChild(nnnn);
+            // var a=document.createElement("a");
+            // a.innerHTML=ee.title;
+            // var li=document.createElement("li");
+            // li.appendChild(a);
+            // var ul=document.createElement("ul");
+            // ul.appendChild(li);
+            // ll.appendChild(ul);
+            }
+           
+        }
+        
+    }
+    xhr.open("get","/dh/gets/"+e,true);
+    xhr.send();
+    }
+    }

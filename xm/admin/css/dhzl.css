@@ -1,0 +1,33 @@
+        form{
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        form>tr>td:first-child{
+            font: normal small-caps 600 30px "宋体";
+        }
+        #dd{
+            width: 915px;
+            height: 210px;
+            background: #e8e8;
+            float: left;
+            opacity: 0.5;
+        }
+        table,table>tbody{
+            width: 600px;
+        }
+        table tr>td:nth-child(2)>input{
+            width: 380px;
+            height: 27px;
+            border: 0;outline: 0;
+            border-radius: 2px;
+        }
+        table tr>td:nth-child(2){
+            padding: 3px;
+        }
+        table>tbody>tr:last-child>td:nth-child(2)>input{
+            width:90px;
+            height: 30px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 2px;
+        }
