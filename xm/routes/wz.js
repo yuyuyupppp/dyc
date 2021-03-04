@@ -24,10 +24,10 @@ router.post('/dytj_create',(req,res)=>{
         }
         pool.query('insert into dytj(title,jjpg,pingfen,jieshao) values(?,?,?,?)',[fields.title,newpath,fields.pingfen,fields.jieshao],(err,result)=>{
           if(err) throw err;
-          console.log(result);            
+          //console.log(result);            
         });
         res.writeHead(200,{'Content-Type':'text/html;charset=UTF8'});
-        console.log(fields,newpath);
+       // console.log(fields,newpath);
         res.end('成功');
       })  
   })

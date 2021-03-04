@@ -18,18 +18,19 @@
             color: #9d9d9d;
             font-weight: bolder;
         }
-        .mm{
-            color: burlywood;
+        .mmk{
+            color: burlywood !important;
             font-weight:lighter ;
             border-bottom: 1px dotted #9d9d77;
         }
     </style>
 </head>
 <body>
-    <script src="./daohang.js"></script>
+    <script src="./js/daohang.js"></script>
     <div id="bj">
     </div>
     <script>
+       +function(){
         var bj=document.getElementById("bj");
          var xhr=new XMLHttpRequest();
             xhr.onreadystatechange=function(){
@@ -39,13 +40,14 @@
                     console.log(r);
                     var htmlstr="";
                     for(var u of r){
-                        htmlstr+=`<div class="span">${u.title}</div><div class="mm">${u.content}</div>`
+                        htmlstr+=`<div class="span">${u.title}</div><div class="mmk">${u.content}</div>`
                     }
                     bj.innerHTML=htmlstr;
                 }
             }
            xhr.open('get','/xxbj/listtt',true);
            xhr.send();
+       }()
     </script>
 </body>
 </html>

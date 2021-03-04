@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <style>
+        @media(min-width:992px){
+        /* 注册登录 */
+        ul.xs>li:nth-child(4){
+           margin-left: 1020px;
+        }
+      #d1,#d2{
+          padding: 12px 5px !important;
+      }
+         #contain{
+             width: 100%;
+             height: 42px;
+             background:#222;
+             border: #080808;
+             font-size: 14px;
+             color: #fff;
+             border-radius: 2px;
+         }   
+        #contain h3{
+            float: left;
+            color: #9d9d9d;
+            margin: 0;
+            font: 36px;
+            line-height: 36px;
+            margin-left: 18px;
+            margin-right: 40px;
+        }
+        #contain ul{
+            float: left;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        ul>li{
+            list-style: none;
+            float: left;
+            height: 100%;
+        }
+        #contain>ul a{
+            box-sizing: border-box;
+            display: block;
+            text-decoration: none;
+            color: #9d9d9d;
+            text-align: center;
+            height: 100%;
+            padding: 12px 15px;
+        }
+        button{
+            display: none;
+        }
+    }
+    @media(max-width:992px){
+        .xs{
+            display: none;
+        }
+        #contain button{
+            box-sizing: border-box;
+            display: block;
+            /* float: right; */
+            position: absolute;
+            right: 0;
+            background: transparent;
+            border: 1px solid #9d9d9d;
+            border-radius: 4px;
+            margin-right:15px ;
+            padding: 8px 9px;
+            margin-top: 5px;
+        }
+        button .icon-bar{
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px;
+            background: #fff;
+        }
+        button .icon-bar:nth-child(2){
+            margin: 4px 0;
+        }
+         #contain{
+             width: 100%;
+             height: 42px;
+             background:#222;
+             border: #080808;
+             font-size: 14px;
+             color: #fff;
+             border-radius: 2px;
+             position: relative;
+         }   
+        #contain h3{
+            float: left;
+            color: #9d9d9d;
+            margin: 0;
+            font: 36px;
+            line-height: 36px;
+            margin-left: 8px;
+            margin-right: 10px;
+        }
+        #contain::before{
+            content: '';
+            display: table;
+        }
+        #contain ul{
+            /* display: block; */
+            border-radius: 2px;
+            margin-top: 6px !important;
+            margin: 0;
+            padding: 0;
+            float: left;
+            width: 100%;
+            height: 140px;
+            /* position: absolute; */
+            top: 28px;
+            background-image: linear-gradient(to right,#f1b1ee,#83c0f1);
+        }
+        #contain ul li{
+            list-style: none;
+            padding: 4px 5px;
+            width: 64px;
+        }
+        #contain a{
+            text-decoration: none;
+            color: #e66cdf;
+        }
+    }
+  .mm{
+      display: none !important;
+  }
+   
+    </style>
+</head>
+<body>
+    <div id='contain'>
+        <h3>yu网么?</h3>
+        <ul class='xs'>
+            <li><a href='wz.html'>网址导航</a></li>
+            <li><a href='javascript:;'>电影推荐</a></li>
+            <li><a href='bj.html'>笔记分享</a></li>
+            <li><a id='d1' href='reg.html'>注册</a></li>
+            <li><a id='d2' href='login.html'>登录</a></li>
+            <li class="mm"><a data-yh href="javascript:;"></a></li>
+            <li class="mm"><a data-tc href='javascript:;'>退出</a></li>
+        </ul>
+        <button>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+        </button>
+    </div>
+    <script>
+        +function(){
+            var button=document.getElementsByTagName('button')[0];
+        console.log(button);
+        button.onclick=function(){
+            var ul=document.getElementsByTagName('ul')[0];
+            console.log(ul);
+            if(ul.className!==''){
+                ul.className='';
+            }else{
+                ul.className='xs';
+            }            
+        }
+        var cz=document.querySelectorAll(".xs>li");
+        document.body.onload=function(){
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var res=xhr.responseText;
+                if(res){
+                    res=JSON.parse(res);
+                    cz[3].className="mm";
+                    cz[4].setAttribute("class","mm");
+                    cz[5].className="";
+                    cz[5].children[0].innerHTML=res[0].uname;
+                    cz[5].style.marginLeft="970px";
+                    cz[6].className="";
+                }else{
+                    cz[3].className="";
+                    cz[4].setAttribute("class","");
+
+                }
+            }
+        }
+        xhr.open("get","/dh/sb",true);
+        xhr.send();
+    }
+    cz[6].onclick=function(){
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                var res=xhr.responseText;
+             location.reload();
+            }
+        }
+        xhr.open("get","/dh/qcss",true);
+        xhr.send();
+    }
+        }()
+        
+        
+    </script>
+</body>
+</html>

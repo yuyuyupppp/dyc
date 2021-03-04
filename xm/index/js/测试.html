@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/normalize.css">
     <style>
         @media(min-width:992px){
+        /* 注册登录 */
+        ul.xs>li:nth-child(4){
+           margin-left: 1055px;
+        }
+      #d1,#d2{
+          padding: 12px 5px !important;
+      }
          #contain{
              width: 100%;
              height: 42px;
@@ -42,7 +48,6 @@
             display: block;
             text-decoration: none;
             color: #9d9d9d;
-            height: 100%;
             text-align: center;
             height: 100%;
             padding: 12px 15px;
@@ -58,7 +63,9 @@
         #contain button{
             box-sizing: border-box;
             display: block;
-            float: right;
+            /* float: right; */
+            position: absolute;
+            right: 0;
             background: transparent;
             border: 1px solid #9d9d9d;
             border-radius: 4px;
@@ -100,11 +107,15 @@
             display: table;
         }
         #contain ul{
-          transition: 2s;
             /* display: block; */
+            border-radius: 2px;
+            margin-top: 6px !important;
+            margin: 0;
+            padding: 0;
+            float: left;
             width: 100%;
-            height: 75px;
-            position: absolute;
+            height: 140px;
+            /* position: absolute; */
             top: 28px;
             background-image: linear-gradient(to right,#f1b1ee,#83c0f1);
         }
@@ -129,6 +140,8 @@
             <li><a href="javascript:;">网址导航</a></li>
             <li><a href="javascript:;">电影推荐</a></li>
             <li><a href="javascript:;">笔记分享</a></li>
+            <li><a id="d1" href="javascrip:;">注册</a></li>
+            <li><a id="d2" href="javascrip:;">登录</a></li>
         </ul>
         <button>
             <span class="icon-bar"></span>

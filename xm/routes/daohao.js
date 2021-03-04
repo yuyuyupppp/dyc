@@ -60,7 +60,7 @@ router.get("/search/:id",(req,res)=>{
     pool.query(sql,[id],(err,result)=>{
         if(err) throw err;
         if(result.length>0){
-			console.log(result);
+			//console.log(result);
 			res.send(result);
 		}else{
 			res.send('0');
@@ -75,7 +75,7 @@ router.get("/wz_search/:id",(req,res)=>{
         if(err) throw err;
         if(result.length>0){
             res.send(result);
-            console.log(result);
+           // console.log(result);
         }else{
             res.send('0');
         }
@@ -88,7 +88,7 @@ router.get("/wz/:id",(req,res)=>{
         if(err) throw err;
         if(result.length>0){
             res.send(result);
-            console.log(result);
+           // console.log(result);
         }else{
             res.send('0');
         }
@@ -147,5 +147,13 @@ router.delete("/wz_del/:id",(req,res)=>{
             res.send('0');
         }
     })
+})
+router.get("/sb",(req,res)=>{
+    // console.log(req.session);
+    res.send(req.session.loginStatus);
+})
+router.get("/qcss",(req,res)=>{
+   req.session.loginStatus=null;
+   res.send( req.session.loginStatus);
 })
 module.exports=router;
